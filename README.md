@@ -2,3 +2,5 @@
 Ansible Test
 
 This line is Added from Linux Mint
+
+Testing 'git pull'
