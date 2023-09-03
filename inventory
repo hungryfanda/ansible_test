@@ -1,3 +1,9 @@
+[web_server]
 192.168.88.131 ansible_user=test2
-192.168.88.130 ansible_user=test1
+192.168.88.130 ansible_user=test1 ansible_python_interpreter=/usr/bin/python3
 
+[db_server]
+192.168.88.131 ansible_user=test2
+
+[file_server]
+192.168.88.130 ansible_user=test1 ansible_python_interpreter=/usr/bin/python3

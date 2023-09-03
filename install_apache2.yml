@@ -1,39 +1,23 @@
----
-
-- hosts: all
-  become: true
-
-  tasks:
-    - name: update linux index
-      apt:
-        update_cache: yes
-      when: ansible_distribution in ["Ubuntu"]
-
-    - name: install apache2 package
-      apt:
-        name: apache2
-        state: latest
-      when: ansible_distribution in ["Ubuntu"]
-
-    - name: add php support for apache
-      apt:
-        name: libapache2-mod-php
-        state: latest
-      when: ansible_distribution in ["Ubuntu"]
-
-    - name: update cent os linux index
-      dnf:
-        update_cache: yes
-      when: ansible_distribution in ["CentOS", "Rocky"]
-
-    - name: install httpd package
-      dnf:
-        name: httpd
-        state: latest
-      when: ansible_distribution in ["CentOS", "Rocky"]
-
-    - name: add php support for apache
-      dnf:
-        name: php
-        state: latest
-      when: ansible_distribution in ["CentOS", "Rocky"]
+ ---
+ 
+ - hosts: all
+   become: true
+   tasks:
+ 
+   - name: install apache and php for Ubuntu servers
+     apt:
+       name:
+         - apache2
+         - libapache2-mod-php
+       state: latest
+       update_cache: yes
+     when: ansible_distribution in ["Ubuntu"]
+ 
+   - name: install apache and php for CentOS servers
+     dnf:
+       name:
+         - httpd
+         - php
+       state: latest
+       update_cache: yes
+     when: ansible_distribution in ["Rocky"]
