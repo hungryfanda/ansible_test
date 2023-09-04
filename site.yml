@@ -37,6 +37,15 @@
       state: latest
     when: ansible_distribution in ["Ubuntu"]
 
+  - name: copy html file to apache/httpd directory
+    tags: apache, html
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 - hosts: db_server
   become: true
   tasks:
